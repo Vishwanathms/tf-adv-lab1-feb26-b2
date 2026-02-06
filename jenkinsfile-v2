@@ -72,8 +72,9 @@ pipeline {
       }
       steps {
         sh '''
-          terraform init -backend=false
+          terraform init -reconfigure
           terraform validate
+          terraform workspace list || true
           terraform plan -lock=false 
         '''
       }
